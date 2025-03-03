@@ -1,1 +1,56 @@
-<p>register works!</p>
+<section>
+    <div class="conatiner">
+        <h1>Register Form</h1>
+        <form [formGroup]="registrationForm">
+            <!-- user name -->
+            <div class="field">
+                <div class="card flex flex-column md:flex-row gap-3">
+                    <p-inputGroup>
+                        <p-inputGroupAddon>
+                            <i class="pi pi-user"></i>
+                        </p-inputGroupAddon>
+                        <input formControlName="name" pInputText placeholder="Username" />
+                    </p-inputGroup>
+               
+                </div>
+            </div>
+            <!-- Email  -->
+            <div class="field">
+                <div class="card flex flex-column md:flex-row gap-3">
+                    <p-inputGroup>
+                        <p-inputGroupAddon>
+                            <i class="pi pi-envelope"></i>
+                        </p-inputGroupAddon>
+                        <input formControlName="email" pInputText placeholder="Email" />
+                    </p-inputGroup>
+               
+                </div>
+            </div>
+            <!-- Password -->
+            <div class="field">
+                <div class="card flex flex-column md:flex-row gap-3">
+                    <p-inputGroup>
+                        <p-inputGroupAddon>
+                            <i class="pi pi-key"></i>
+                        </p-inputGroupAddon>
+                        <input formControlName="password" pInputText placeholder="Password" />
+                    </p-inputGroup>
+               
+                </div>
+            </div>
+            <!-- Confirm Password  -->
+            <div class="field">
+                <div class="card flex flex-column md:flex-row gap-3">
+                    <p-inputGroup>
+                        <p-inputGroupAddon>
+                            <i class="pi pi-key"></i>
+                        </p-inputGroupAddon>
+                        <input formControlName="rePassword" pInputText placeholder="Confirm Password" />
+                    </p-inputGroup>
+               
+                </div>
+            </div>
+        
+        </form>
+    </div>
+</section>
