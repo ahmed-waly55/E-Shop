@@ -5,7 +5,11 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
-import { Message } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
+import { AuthService } from '../../core/service/auth.service';
+import { IRegister } from '../../core/interfaces/iregister';
+import { ToastModule } from 'primeng/toast';
+
 
 @Component({
   selector: 'app-register',
@@ -17,9 +21,11 @@ import { Message } from 'primeng/api';
        ReactiveFormsModule,
        ButtonModule,
        MessagesModule,
+       ToastModule
       ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
+  providers: [MessageService]
 })
 export class RegisterComponent {
 
@@ -30,7 +36,7 @@ export class RegisterComponent {
 
   registrationForm!:FormGroup
 
-  constructor(){
+  constructor(private _authService:AuthService,private _MessageService:MessageService){
     this.initFormControls();
     this.initFormGroupe();
 
@@ -77,8 +83,37 @@ export class RegisterComponent {
   }
 
 
+
+
   submit(){
-    console.log(this.registrationForm);
+    if(this.registrationForm.valid){
+      this.siginUp(this.registrationForm.value)
+      
+    }else{
+      this.registrationForm.markAllAsTouched()
+      Object.keys(this.registrationForm.controls).forEach((control)=> this.registrationForm.controls[control]
+      .markAsDirty())
+    }
     
   }
+
+  siginUp(data:IRegister):void{
+    this._authService.register(data).subscribe({
+      next: (response) =>{
+        if(response._id){
+          this.show('success','Success','Success Registration ')
+        }
+      },
+      error: (err) =>{
+        this.show('error','Error',err.error.error)
+      },
+
+    })
+  }
+
+  show(severity:string,summary:string,detail:string) {
+    this._MessageService.add({ severity: severity, summary: summary, detail: detail });
+}
+
+
 }
