@@ -1,7 +1,7 @@
 <section>
-    <div class="conatiner">
+    <div class="container">
         <h1>Register Form</h1>
-        <form [formGroup]="registrationForm">
+        <form [formGroup]="registrationForm" (ngSubmit)="submit()">
             <!-- user name -->
             <div class="field">
                 <div class="card flex flex-column md:flex-row gap-3">
@@ -12,7 +12,34 @@
                         <input formControlName="name" pInputText placeholder="Username" />
                     </p-inputGroup>
                
+                    
                 </div>
+
+                <div class="validation">
+                   @if(name.dirty && name.touched){
+                    @if(name.getError('required')){
+                        <p-messages 
+                        [value]="[{ severity: 'error',summary:'validation Error', detail: 'Name is Required' }]" 
+                        [enableService]="false" 
+                        [closable]="false" />
+                    }
+                   }
+                   @if(name.getError('minlength')){
+                    <p-messages 
+                    [value]="[{ severity: 'error',summary:'validation Error', detail: 'Must be at least 3 char' }]" 
+                    [enableService]="false" 
+                    [closable]="false" />
+                   }
+                     
+                   @if(name.getError('maxlength')){
+                    <p-messages 
+                    [value]="[{ severity: 'error',summary:'validation Error', detail: 'cannot exceed 20 characters' }]" 
+                    [enableService]="false" 
+                    [closable]="false" />
+                   }
+                </div>
+
+
             </div>
             <!-- Email  -->
             <div class="field">
@@ -25,32 +52,91 @@
                     </p-inputGroup>
                
                 </div>
+
+                <div class="validation">
+                    @if(email.dirty && email.touched){
+                        @if(email.getError('required')){
+                            <p-messages 
+                            [value]="[{ severity: 'error',summary:'validation Error', detail: 'Email is Required' }]" 
+                            [enableService]="false" 
+                            [closable]="false" />
+                        }
+                    }
+                    @if(email.getError('email')){
+                        <p-messages 
+                        [value]="[{ severity: 'error',summary:'validation Error', detail: 'Email Not valid' }]" 
+                        [enableService]="false" 
+                        [closable]="false" />
+                    }
+                </div>
+
+
             </div>
             <!-- Password -->
             <div class="field">
                 <div class="card flex flex-column md:flex-row gap-3">
                     <p-inputGroup>
                         <p-inputGroupAddon>
-                            <i class="pi pi-key"></i>
+                            <i class="pi pi-lock"></i>
                         </p-inputGroupAddon>
-                        <input formControlName="password" pInputText placeholder="Password" />
+                        <input formControlName="password" type="password" pInputText placeholder="Password" />
                     </p-inputGroup>
                
                 </div>
+
+                <div class="validation">
+                    @if(password.dirty && password.touched){
+                        @if(password.getError('required')){
+                            <p-messages 
+                            [value]="[{ severity: 'error',summary:'validation Error', detail: 'Password is Required' }]" 
+                            [enableService]="false" 
+                            [closable]="false" />
+                        }
+                        @if(password.getError('minlength')){
+                            <p-messages 
+                            [value]="[{ severity: 'error',summary:'validation Error', detail: 'Must be at least 3 char' }]" 
+                            [enableService]="false" 
+                            [closable]="false" />
+                           }
+                             
+                           @if(password.getError('maxlength')){
+                            <p-messages 
+                            [value]="[{ severity: 'error',summary:'validation Error', detail: 'cannot exceed 20 characters' }]" 
+                            [enableService]="false" 
+                            [closable]="false" />
+                           }
+                        
+                    }
+                </div>
+
             </div>
             <!-- Confirm Password  -->
             <div class="field">
                 <div class="card flex flex-column md:flex-row gap-3">
                     <p-inputGroup>
                         <p-inputGroupAddon>
-                            <i class="pi pi-key"></i>
+                            <i class="pi pi-lock"></i>
                         </p-inputGroupAddon>
-                        <input formControlName="rePassword" pInputText placeholder="Confirm Password" />
+                        <input formControlName="rePassword" type="password" pInputText placeholder="Confirm Password" />
                     </p-inputGroup>
                
                 </div>
+
+
+                @if(rePassword.dirty && password.touched){
+                    @if(rePassword.getError('passNotMatch')){
+                        <p-messages 
+                        [value]="[{ severity: 'error',summary:'validation Error', detail: 'RePassword Not Match Password' }]" 
+                        [enableService]="false" 
+                        [closable]="false" />
+                    }
+                    
+                }
             </div>
         
+                <p-button type="submit" label="Submit" />
+
+
         </form>
     </div>
 </section>

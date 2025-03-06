@@ -3,11 +3,21 @@ import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModu
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { MessagesModule } from 'primeng/messages';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, InputGroupModule, InputGroupAddonModule, InputTextModule,ReactiveFormsModule],
+  imports: [FormsModule,
+     InputGroupModule,
+      InputGroupAddonModule,
+       InputTextModule,
+       ReactiveFormsModule,
+       ButtonModule,
+       MessagesModule,
+      ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -25,6 +35,9 @@ export class RegisterComponent {
     this.initFormGroupe();
 
   }
+
+
+
 
   initFormControls(): void {
     this.name = new FormControl('', [
@@ -59,6 +72,13 @@ export class RegisterComponent {
         return { passNotMatch: true };
       } else return null;
     };
+
+    
   }
 
+
+  submit(){
+    console.log(this.registrationForm);
+    
+  }
 }
