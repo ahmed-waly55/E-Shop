@@ -9,6 +9,8 @@ import { Message, MessageService } from 'primeng/api';
 import { AuthService } from '../../core/service/auth.service';
 import { IRegister } from '../../core/interfaces/iregister';
 import { ToastModule } from 'primeng/toast';
+import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +23,8 @@ import { ToastModule } from 'primeng/toast';
        ReactiveFormsModule,
        ButtonModule,
        MessagesModule,
-       ToastModule
+       ToastModule,
+       NgxSpinnerModule
       ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
@@ -36,7 +39,12 @@ export class RegisterComponent {
 
   registrationForm!:FormGroup
 
-  constructor(private _authService:AuthService,private _MessageService:MessageService){
+  constructor(
+    private _authService:AuthService,
+    private _MessageService:MessageService,
+    private _NgxSpinnerService: NgxSpinnerService,
+    private router:Router
+  ){
     this.initFormControls();
     this.initFormGroupe();
 
@@ -98,14 +106,19 @@ export class RegisterComponent {
   }
 
   siginUp(data:IRegister):void{
+    this._NgxSpinnerService.show()
     this._authService.register(data).subscribe({
       next: (response) =>{
         if(response._id){
           this.show('success','Success','Success Registration ')
+          this.router.navigate(['auth/login']);
+
         }
+        this._NgxSpinnerService.hide()
       },
       error: (err) =>{
         this.show('error','Error',err.error.error)
+        this._NgxSpinnerService.hide()
       },
 
     })
