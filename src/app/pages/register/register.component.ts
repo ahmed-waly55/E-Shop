@@ -16,7 +16,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule,
+  imports: [
+    FormsModule,
      InputGroupModule,
       InputGroupAddonModule,
        InputTextModule,
@@ -111,10 +112,10 @@ export class RegisterComponent {
       next: (response) =>{
         if(response._id){
           this.show('success','Success','Success Registration ')
-          this.router.navigate(['auth/login']);
 
         }
         this._NgxSpinnerService.hide()
+        this.router.navigate(['auth/login']);
       },
       error: (err) =>{
         this.show('error','Error',err.error.error)
