@@ -1,5 +1,6 @@
-<P>Stop Video 10</p>
-<p>video name is Create a Login Form Using PrimeNG</p>
+<P>Stop Video 11</p>
+<p>video name is Add Route Guards | canActivateFn</p>
+
 <pre>
 <code>
   npx @angular/cli@17 new E-Shop --style=scss --ssr

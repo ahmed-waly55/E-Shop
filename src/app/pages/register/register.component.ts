@@ -1,35 +1,22 @@
-import { Component } from '@angular/core';
+import { Component , ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
-import { InputGroupModule } from 'primeng/inputgroup';
-import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
-import { MessagesModule } from 'primeng/messages';
-import { Message, MessageService } from 'primeng/api';
+import {  MessageService } from 'primeng/api';
 import { AuthService } from '../../core/service/auth.service';
 import { IRegister } from '../../core/interfaces/iregister';
-import { ToastModule } from 'primeng/toast';
-import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import {  NgxSpinnerService } from "ngx-spinner";
 import { Router } from '@angular/router';
+import { SharedModule } from '../../shared/module/shared/shared.module';
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
-    FormsModule,
-     InputGroupModule,
-      InputGroupAddonModule,
-       InputTextModule,
-       ReactiveFormsModule,
-       ButtonModule,
-       MessagesModule,
-       ToastModule,
-       NgxSpinnerModule
+    SharedModule
       ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
-  providers: [MessageService]
+  encapsulation: ViewEncapsulation.None
 })
 export class RegisterComponent {
 
@@ -111,11 +98,14 @@ export class RegisterComponent {
     this._authService.register(data).subscribe({
       next: (response) =>{
         if(response._id){
+          const {email , password} = data
           this.show('success','Success','Success Registration ')
-
+          this._authService.login({email,password}).subscribe(()=>{
+            this.router.navigate(['user'])
+          })
         }
         this._NgxSpinnerService.hide()
-        this.router.navigate(['auth/login']);
+        // this.router.navigate(['auth/login']);
       },
       error: (err) =>{
         this.show('error','Error',err.error.error)
