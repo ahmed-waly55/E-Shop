@@ -1,5 +1,5 @@
-<P>Stop Video 12</p>
-<p>video name is Route & State Parameters in Guard</p>
+<P>Stop Video 14</p>
+<p>video name is canDeactivate, canMatch, etc..</p>
 
 <pre>
 <code>

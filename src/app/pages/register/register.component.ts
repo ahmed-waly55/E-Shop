@@ -1,45 +1,45 @@
-import { Component , ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
-import {  MessageService } from 'primeng/api';
+import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { AuthService } from '../../core/service/auth.service';
 import { IRegister } from '../../core/interfaces/iregister';
-import {  NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { SharedModule } from '../../shared/module/shared/shared.module';
-
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    SharedModule
-      ],
+  imports: [SharedModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class RegisterComponent {
+  name!: FormControl;
+  email!: FormControl;
+  password!: FormControl;
+  rePassword!: FormControl;
 
-  name!:FormControl
-  email!:FormControl
-  password!:FormControl
-  rePassword!:FormControl
-
-  registrationForm!:FormGroup
+  registrationForm!: FormGroup;
 
   constructor(
-    private _authService:AuthService,
-    private _MessageService:MessageService,
+    private _authService: AuthService,
+    private _MessageService: MessageService,
     private _NgxSpinnerService: NgxSpinnerService,
-    private router:Router
-  ){
+    private router: Router
+  ) {
     this.initFormControls();
     this.initFormGroupe();
-
   }
-
-
-
 
   initFormControls(): void {
     this.name = new FormControl('', [
@@ -74,50 +74,46 @@ export class RegisterComponent {
         return { passNotMatch: true };
       } else return null;
     };
-
-    
   }
 
-
-
-
-  submit(){
-    if(this.registrationForm.valid){
-      this.siginUp(this.registrationForm.value)
-      
-    }else{
-      this.registrationForm.markAllAsTouched()
-      Object.keys(this.registrationForm.controls).forEach((control)=> this.registrationForm.controls[control]
-      .markAsDirty())
+  submit() {
+    if (this.registrationForm.valid) {
+      this.siginUp(this.registrationForm.value);
+    } else {
+      this.registrationForm.markAllAsTouched();
+      Object.keys(this.registrationForm.controls).forEach((control) =>
+        this.registrationForm.controls[control].markAsDirty()
+      );
     }
-    
   }
 
-  siginUp(data:IRegister):void{
-    this._NgxSpinnerService.show()
+  siginUp(data: IRegister): void {
+    this._NgxSpinnerService.show();
     this._authService.register(data).subscribe({
-      next: (response) =>{
-        if(response._id){
-          const {email , password} = data
-          this.show('success','Success','Success Registration ')
-          this._authService.login({email,password}).subscribe(()=>{
-            this.router.navigate(['user'])
-          })
+      next: (response) => {
+        if (response._id) {
+          const { email, password } = data;
+          this.show('success', 'Success', 'Success Registration ');
+          this._authService.login({ email, password }).subscribe(() => {
+            localStorage.setItem('token', response._id);
+            this.router.navigate(['user']);
+          });
         }
-        this._NgxSpinnerService.hide()
+        this._NgxSpinnerService.hide();
         // this.router.navigate(['auth/login']);
       },
-      error: (err) =>{
-        this.show('error','Error',err.error.error)
-        this._NgxSpinnerService.hide()
+      error: (err) => {
+        this.show('error', 'Error', err.error.error);
+        this._NgxSpinnerService.hide();
       },
-
-    })
+    });
   }
 
-  show(severity:string,summary:string,detail:string) {
-    this._MessageService.add({ severity: severity, summary: summary, detail: detail });
-}
-
-
+  show(severity: string, summary: string, detail: string) {
+    this._MessageService.add({
+      severity: severity,
+      summary: summary,
+      detail: detail,
+    });
+  }
 }

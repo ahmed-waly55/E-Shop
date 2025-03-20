@@ -6,19 +6,21 @@ import { IRegister } from '../interfaces/iregister';
 import { ILogin } from '../interfaces/ilogin';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor(private _HttpClient: HttpClient) {}
 
-  constructor(private _HttpClient:HttpClient) { }
+  register(registerData: IRegister): Observable<any> {
+    return this._HttpClient.post(`${baseUrl}/api/users`, registerData);
+  }
 
-
-register(registerData:IRegister):Observable<any>{
-  return this._HttpClient.post(`${baseUrl}/api/users`,registerData)
-}
-
-login(loginUser:ILogin):Observable<any>{
-  return this._HttpClient.post(`${baseUrl}/api/users/auth`,loginUser)
-}
-
+  login(loginUser: ILogin): Observable<any> {
+    return this._HttpClient.post(`${baseUrl}/api/users/auth`, loginUser);
+  }
+  authorized(): boolean {
+    if (localStorage.getItem('token') !== null) {
+      return true;
+    } else return false;
+  }
 }
