@@ -1,5 +1,5 @@
-<P>Stop Video 14</p>
-<p>video name is canDeactivate, canMatch, etc..</p>
+<P>Stop Video 16</p>
+<p>video name is Create a Blank Navbar Using PrimeNG</p>
 
 <pre>
 <code>
@@ -22,5 +22,12 @@ npm install primeflex
 <pre>
 <code>
 npm install ngx-spinner@16
+</code>
+</pre>
+
+<h2>Some important commands</h2>
+<pre>
+<code>
+  for x in details category products cart; do ng g c $x; done
 </code>
 </pre>
