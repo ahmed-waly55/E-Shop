@@ -4,6 +4,11 @@ import { registerGuard } from './core/guards/register.guard';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'user',
+    pathMatch: 'full',
+  },
+  {
     path: 'auth',
     loadComponent: () =>
       import('./layouts/auth-layout/auth-layout.component').then(
