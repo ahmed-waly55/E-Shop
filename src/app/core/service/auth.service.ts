@@ -23,4 +23,7 @@ export class AuthService {
       return true;
     } else return false;
   }
+  logout(): Observable<any> {
+    return this._HttpClient.post(`${baseUrl}/api/users/logout`, {});
+  }
 }

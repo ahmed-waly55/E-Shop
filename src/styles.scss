@@ -2,6 +2,13 @@ body{
     margin: 0 3px;
     overflow: hidden;
 }
+.container-fluid{
+    margin: 0 auto;
+    padding: {
+        left: 20px;
+        right: 20px;
+    }
+}
 .container{
     margin: 0 auto;
     padding: {

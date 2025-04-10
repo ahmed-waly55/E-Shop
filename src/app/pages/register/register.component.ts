@@ -98,7 +98,7 @@ export class RegisterComponent {
           this.show('success', 'Success', 'Success Registration ');
           this._authService.login({ email, password }).subscribe(() => {
             localStorage.setItem('token', response._id);
-            this.router.navigate(['home']);
+            this.router.navigate(['user']);
             this.userData.username.next(response.name);
             localStorage.setItem('username', response.name);
           });

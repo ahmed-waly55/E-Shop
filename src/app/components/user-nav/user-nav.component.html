@@ -21,13 +21,14 @@
                     <i class="pi pi-shopping-cart text-3xl mr-4" pBadge value={{cartCount}}></i>
                 </a>
                 <a
-                (click)="logout = !logout "
+                (click)="logOut = !logOut "
                 class="user-name p-3 text-white bg-orange-400 font-bold capitalize relative"
                 >
                     <span>{{userName}}</span>
 
-                  @if(logout){
-                    <a class="logout py-2 px-5 text-white bg-orange-400 font-bold absolute left-50 border-round-2xl flex align-items-center gap-2">
+                  @if(logOut){
+                    
+                    <a (click)="logout()" class="logout py-2 px-5 text-white bg-orange-400 font-bold absolute left-50 border-round-2xl flex align-items-center gap-2">
                         <span> logout</span>
                      <span class="pi pi-sign-out"></span>
                      </a>

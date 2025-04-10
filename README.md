@@ -1,5 +1,5 @@
 <P>Stop Video 18</p>
-<p>video name is Create Card & Integrate with Logout</p>
+<p>video name is Create Card & Integrate with Logout 16m</p>
 
 <pre>
 <code>
@@ -15,7 +15,7 @@
 
 <pre>
 <code>
-npm install primeflex
+npm install primeflex 
 </code>
 </pre>
 
