@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { GalleriaModule } from 'primeng/galleria';
+import { CardComponent } from "../../shared/module/card/card/card.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [GalleriaModule],
+  imports: [GalleriaModule, CardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
