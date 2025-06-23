@@ -1,31 +1,28 @@
 <section>
     <div class="container-fluid">
-        <h5 class="font-bold text-color-secondary"> HOT SALES</h5>
+        <h5 class="font-bold text-color-secondary">HOT SALES</h5>
+
         <div class="grid">
             <div class="col-12 md:col-5">
                 <div class="card">
                     <p-galleria [value]="images" [circular]="true" [showItemNavigators]="true" [showThumbnails]="false"
-                        [containerStyle]="{ 'max-width': '100%','border-radius': '10px', overflow:'hidden'}">
+                        [containerStyle]="{ 'max-width': '100%', 'border-radius': '10px', 'overflow': 'hidden' }">
                         <ng-template pTemplate="item" let-item>
                             <img [src]="item.itemImageSrc" style="width: 100%; display: block; height: 240px;" />
                         </ng-template>
                     </p-galleria>
                 </div>
             </div>
+
             <div class="hidden md:block md:col-6">
-                <app-card [isSmallCard]="true"></app-card>
+                <app-card [isSmallCard]="true" [Products]="smallProducts"></app-card>
             </div>
         </div>
 
-        <div class="product">
-            <h2 class="text-color-secondary fonot-bold">Best Product</h2>
+        <div class="product mt-4">
+            <h2 class="text-color-secondary font-bold mb-3">Best Product</h2>
 
-            <app-card [isSmallCard]="false"></app-card>
-
+            <app-card [isSmallCard]="false" [Products]="bestProducts | popular"></app-card>
         </div>
-
     </div>
 </section>
-
-
-<!-- col-12 md:col-4 lg:col-3 -->

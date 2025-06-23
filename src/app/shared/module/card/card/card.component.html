@@ -1,33 +1,34 @@
 <div class="flex justify-content-between align-items-center flex-wrap">
 
 
-    @for (item of [0,0,0,0]; track $index) {
+    @for (product of Products; track $index) {
     <div [ngClass]="{
     'col-6':isSmallCard,
      'col-12 md:col-3 lg:col-2 ':!isSmallCard}">
         <div [ngClass]="{'flex flex-wrap lg:flex-nowrap justify-content-center gap-2':isSmallCard , '': !isSmallCard}">
-            <figure [ngClass]="{'md:w-6rem lg:w-12rem':isSmallCard, 'wfull':!isSmallCard}"
+            <figure [ngClass]="{'md:w-6rem lg:w-9rem':isSmallCard, 'wfull':!isSmallCard}"
                 class="shadow-2 m-1 border-round-2xl overflow-hidden ">
-                <img class="w-full h-full"
-                    src="https://storage.googleapis.com/fir-auth-1c3bc.appspot.com/1692255692675-ant%20sport.jpg"
-                    alt="product">
+                <img [ngClass]="{'h-full':isSmallCard , 'h-20rem':!isSmallCard}" #image
+                    (error)="image.src = 'https://img.freepik.com/premium-vector/vector-illustration-about-concept-no-items-found-no-results-found_675567-6665.jpg'"
+                    class="w-full" [src]="product.image" alt="product">
             </figure>
-            <div class="content py-1">
-                <p class="truncate-text overflow-hidden font-medium text-xs text-dark my-1">Ant Esports
-                    GP310 Wireless Gamepad, Compatible for PC & Laptop (Windows 10/8 /7, Steam) / PS3 /
-                    Android </p>
+            <div class="content py-1 w-full">
+                <p class="truncate-text overflow-hidden font-medium text-xs my-1">
+                    {{ product.description.split(' ').slice(0, 15).join(' ') + (product.description.split(' ').length >
+                    100 ? '...' : '') }}
+                </p>
                 <div class="flex align-items-center gap-2">
                     <div class="price flex gap-2 items-center">
                         <span class="text-color-secondary">
                             <del>14</del>
                         </span>
                         <span class="new-price font-bold">
-                            14
+                            {{product.price}}
                             <span class="green">$</span>
                         </span>
                     </div>
                     <div class="offer">
-                        <span class="offer-s p-1 border-circle text-white text-xs">%3</span>
+                        <span class="offer-s p-1 border-circle text-white text-xs">%{{product.discount}}</span>
                         <span class="fonot-bold text-xs fonot-bold px-1">off</span>
                     </div>
                 </div>

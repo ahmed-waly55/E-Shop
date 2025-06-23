@@ -7,24 +7,26 @@ import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
-import {  MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { AutoFocusModule } from 'primeng/autofocus';
 
 @NgModule({
-  declarations: [],
-  imports: [
-  FormsModule,
-  InputGroupModule,
-  InputTextModule,
-  InputGroupAddonModule,
-  ButtonModule,
-  ReactiveFormsModule,
-  ToastModule,
-  MessagesModule,
-  NgxSpinnerModule,
-  AutoFocusModule
+  declarations: [
+
   ],
-  exports:[
+  imports: [
+    FormsModule,
+    InputGroupModule,
+    InputTextModule,
+    InputGroupAddonModule,
+    ButtonModule,
+    ReactiveFormsModule,
+    ToastModule,
+    MessagesModule,
+    NgxSpinnerModule,
+    AutoFocusModule
+  ],
+  exports: [
     FormsModule,
     InputGroupModule,
     InputTextModule,

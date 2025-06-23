@@ -1,6 +1,5 @@
-<P>Stop Video (21)</p>
-<p> video name is IIntegrate With Product API</p>
-
+<P>Stop Video (22)</p>
+<p> video name is Finalize Card Component UI</p>
 <pre>
 <code>
   npx @angular/cli@17 new E-Shop --style=scss --ssr

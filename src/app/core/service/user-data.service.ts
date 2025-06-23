@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { productBaseUrl } from '../apiRoot/baseUrl';
 
 @Injectable({
   providedIn: 'root',
@@ -24,5 +25,9 @@ export class UserDataService {
     return this._httpClient.get(
       `https://e-commerce-serverside.vercel.app/my-cart/${id}`
     );
+  }
+  allProduct(): Observable<any> {
+    return this._httpClient.get(`${productBaseUrl}/products`)
+
   }
 }

@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Iproducts } from '../../../../core/interfaces/iproducts';
 
 @Component({
   selector: 'app-card',
@@ -10,6 +11,12 @@ import { Component, Input } from '@angular/core';
 })
 export class CardComponent {
 
+
   @Input({ required: true }) isSmallCard: boolean = false;
+  @Input({ required: true }) Products!: Iproducts[]
+
+
+
+
 
 }
