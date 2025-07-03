@@ -24,7 +24,7 @@ import { AutoFocusModule } from 'primeng/autofocus';
     ToastModule,
     MessagesModule,
     NgxSpinnerModule,
-    AutoFocusModule
+    AutoFocusModule,
   ],
   exports: [
     FormsModule,

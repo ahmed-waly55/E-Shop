@@ -1,5 +1,5 @@
-<P>Stop Video (22)</p>
-<p> video name is Finalize Card Component UI</p>
+<P>Stop Video (23)</p>
+<p> video name is Get Cart Count Using Cart API </p>
 <pre>
 <code>
   npx @angular/cli@17 new E-Shop --style=scss --ssr

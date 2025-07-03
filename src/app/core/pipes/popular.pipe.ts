@@ -8,7 +8,7 @@ import { Iproducts } from '../interfaces/iproducts';
 export class PopularPipe implements PipeTransform {
 
   transform(products: Iproducts[]): Iproducts[] {
-    return products.filter((product) => product?.popular === true);
+    return products?.filter((product) => product?.popular === true);
   }
 
 }
