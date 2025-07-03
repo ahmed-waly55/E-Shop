@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GalleriaModule } from 'primeng/galleria';
 import { CardComponent } from "../../shared/module/card/card/card.component";
-import { UserDataService } from '../../core/service/user-data.service';
 import { Iproducts } from '../../core/interfaces/iproducts';
 import { PopularPipe } from '../../core/pipes/popular.pipe';
+import { ProductService } from '../../core/service/product.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ import { PopularPipe } from '../../core/pipes/popular.pipe';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  constructor(private _userData: UserDataService) {
+  constructor(private _productService: ProductService) {
 
   }
   images: any[] | undefined;
@@ -45,9 +45,9 @@ export class HomeComponent implements OnInit {
   }
 
   getAllProduct(): void {
-    this._userData.allProduct().subscribe((next) => {
-      this.smallProducts = next.products.slice(0, 4);
-      this.bestProducts = next.products;
+    this._productService.allProduct().subscribe((next) => {
+      this.smallProducts = next.slice(0, 4);
+      this.bestProducts = next;
     })
   }
 }

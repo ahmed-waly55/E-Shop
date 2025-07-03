@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
-import { productBaseUrl } from '../apiRoot/baseUrl';
 
 @Injectable({
   providedIn: 'root',
@@ -10,24 +8,9 @@ import { productBaseUrl } from '../apiRoot/baseUrl';
 export class UserDataService {
   username: BehaviorSubject<string>;
 
-  constructor(
-    private _httpClient: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    const storedUsername =
-      isPlatformBrowser(this.platformId) && localStorage.getItem('username')
-        ? localStorage.getItem('username')!
-        : '';
-    this.username = new BehaviorSubject<string>(storedUsername);
-  }
-
-  getCartCount(id: string): Observable<any> {
-    return this._httpClient.get(
-      `https://e-commerce-serverside.vercel.app/my-cart/${id}`
-    );
-  }
-  allProduct(): Observable<any> {
-    return this._httpClient.get(`${productBaseUrl}/products`)
-
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    const isBrowser = isPlatformBrowser(this.platformId);
+    const name = isBrowser ? localStorage.getItem('username') : '';
+    this.username = new BehaviorSubject<string>(name || '');
   }
 }

@@ -9,6 +9,7 @@ import { RippleModule } from 'primeng/ripple';
 import { UserDataService } from '../../core/service/user-data.service';
 import { AuthService } from '../../core/service/auth.service';
 import { Router } from '@angular/router';
+import { CartService } from '../../core/service/cart.service';
 
 @Component({
   selector: 'app-user-nav',
@@ -28,9 +29,10 @@ import { Router } from '@angular/router';
 export class UserNavComponent implements OnInit {
   constructor(
     private userData: UserDataService,
+    private _cartService: CartService,
     private _auth: AuthService,
     private _router: Router
-  ) {}
+  ) { }
   items: MenuItem[] | undefined;
   logOut: boolean = false;
   userName: string = '';
@@ -62,7 +64,7 @@ export class UserNavComponent implements OnInit {
   }
   getUserCartCount(): void {
     const id = localStorage.getItem('token') ?? '';
-    this.userData
+    this._cartService
       .getCartCount(id)
       .subscribe((next) => (this.cartCount = next.cart.length));
   }
