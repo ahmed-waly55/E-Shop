@@ -47,7 +47,7 @@ export const routes: Routes = [
           import('./pages/home/home.component').then((c) => c.HomeComponent),
       },
       {
-        path: 'cart/:id',
+        path: 'cart',
         loadComponent: () =>
           import('./pages/cart/cart.component').then((c) => c.CartComponent),
       },
@@ -59,7 +59,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'details',
+        path: 'details/:id',
         loadComponent: () =>
           import('./pages/details/details.component').then(
             (c) => c.DetailsComponent

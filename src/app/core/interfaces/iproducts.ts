@@ -1,5 +1,5 @@
 export interface Iproducts {
-    _id: number;
+    _id: string;
     title: string;
     image: string;
     price: number;
@@ -10,5 +10,5 @@ export interface Iproducts {
     category: string;
     discount: number;
     popular: boolean;
-
+    isAddedToCart: boolean
 }

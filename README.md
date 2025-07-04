@@ -1,5 +1,5 @@
-<P>Stop Video (24)</p>
-<p> video name is Add To Cart Using Cart API (P2) </p>
+<P>Stop Video (25)</p>
+<p> video name is  Store Cart Data in Local Storage</p>
 <pre>
 <code>
   npx @angular/cli@17 new E-Shop --style=scss --ssr

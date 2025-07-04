@@ -45,9 +45,16 @@ export class HomeComponent implements OnInit {
   }
 
   getAllProduct(): void {
-    this._productService.allProduct().subscribe((next) => {
-      this.smallProducts = next.slice(0, 4);
-      this.bestProducts = next;
+    this._productService.allProduct().subscribe((response: Iproducts[]) => {
+      this.smallProducts = response.slice(0, 4);
+      this.bestProducts = response.map((product) => {
+        return {
+          ...product,
+          isAddedToCart: false
+        }
+      });
     })
   }
+
+
 }
