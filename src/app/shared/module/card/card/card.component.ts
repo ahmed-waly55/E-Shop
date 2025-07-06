@@ -23,7 +23,12 @@ export class CardComponent {
     const userId = localStorage.getItem("token") ?? ''
     this._CartService.addToCart({ userId, productId }).subscribe((next) => {
       console.log(next);
+      this._CartService.countOfCart.next(next.cart.length)
       this.isAddedToCart = true
+      const stordCard = localStorage.getItem('cartState')
+      const cartState = stordCard ? JSON.parse(stordCard) : {}
+      cartState[productId] = true
+      localStorage.setItem("cartState", JSON.stringify(cartState))
     })
   }
 

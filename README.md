@@ -1,5 +1,5 @@
-<P>Stop Video (25)</p>
-<p> video name is  Store Cart Data in Local Storage</p>
+<P>Stop Video (26)</p>
+<p> video name is Toaster Notifications with PrimeNG</p>
 <pre>
 <code>
   npx @angular/cli@17 new E-Shop --style=scss --ssr
@@ -30,3 +30,6 @@ npm install ngx-spinner@16
   for x in details category products cart; do ng g c $x; done
 </code>
 </pre>
+
+<h2>Demo</h2>
+<a href='https://e-sh0p.netlify.app/'>Demo</a>

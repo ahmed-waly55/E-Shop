@@ -57,6 +57,10 @@ export class UserNavComponent implements OnInit {
         path: 'category',
       },
     ];
+    this._cartService.countOfCart.subscribe((next) => {
+      this.cartCount = next
+
+    })
   }
 
   getUserName(): void {

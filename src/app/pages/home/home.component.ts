@@ -45,12 +45,15 @@ export class HomeComponent implements OnInit {
   }
 
   getAllProduct(): void {
+    const stordCard = localStorage.getItem('cartState')
+    const cartState = stordCard ? JSON.parse(stordCard) : {}
     this._productService.allProduct().subscribe((response: Iproducts[]) => {
       this.smallProducts = response.slice(0, 4);
       this.bestProducts = response.map((product) => {
         return {
           ...product,
-          isAddedToCart: false
+
+          isAddedToCart: cartState[product._id] || false
         }
       });
     })
