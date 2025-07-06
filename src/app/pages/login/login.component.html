@@ -2,7 +2,7 @@
     <div class="container my-8">
         <h1>Login Form</h1>
         <form [formGroup]="loginForm" (ngSubmit)="submit()">
-          
+
             <!-- Email  -->
             <div class="field">
                 <div class="card flex flex-column md:flex-row gap-3">
@@ -10,25 +10,22 @@
                         <p-inputGroupAddon>
                             <i class="pi pi-envelope"></i>
                         </p-inputGroupAddon>
-                        <input [autofocus]="true"  formControlName="email" pInputText placeholder="Email" />
+                        <input [autofocus]="true" formControlName="email" pInputText placeholder="Email" />
                     </p-inputGroup>
-               
+
                 </div>
 
                 <div class="validation">
                     @if(email.dirty && email.touched){
-                        @if(email.getError('required')){
-                            <p-messages 
-                            [value]="[{ severity: 'error',summary:'validation Error', detail: 'Email is Required' }]" 
-                            [enableService]="false" 
-                            [closable]="false" />
-                        }
+                    @if(email.getError('required')){
+                    <p-messages
+                        [value]="[{ severity: 'error',summary:'validation Error', detail: 'Email is Required' }]"
+                        [enableService]="false" [closable]="false" />
+                    }
                     }
                     @if(email.getError('email')){
-                        <p-messages 
-                        [value]="[{ severity: 'error',summary:'validation Error', detail: 'Email Not valid' }]" 
-                        [enableService]="false" 
-                        [closable]="false" />
+                    <p-messages [value]="[{ severity: 'error',summary:'validation Error', detail: 'Email Not valid' }]"
+                        [enableService]="false" [closable]="false" />
                     }
                 </div>
 
@@ -43,51 +40,46 @@
                         </p-inputGroupAddon>
                         <input formControlName="password" type="password" pInputText placeholder="Password" />
                     </p-inputGroup>
-               
+
                 </div>
 
                 <div class="validation">
                     @if(password.dirty && password.touched){
-                        @if(password.getError('required')){
-                            <p-messages 
-                            [value]="[{ severity: 'error',summary:'validation Error', detail: 'Password is Required' }]" 
-                            [enableService]="false" 
-                            [closable]="false" />
-                        }
-                        @if(password.getError('minlength')){
-                            <p-messages 
-                            [value]="[{ severity: 'error',summary:'validation Error', detail: 'Must be at least 3 char' }]" 
-                            [enableService]="false" 
-                            [closable]="false" />
-                           }
-                             
-                           @if(password.getError('maxlength')){
-                            <p-messages 
-                            [value]="[{ severity: 'error',summary:'validation Error', detail: 'cannot exceed 20 characters' }]" 
-                            [enableService]="false" 
-                            [closable]="false" />
-                           }
-                        
+                    @if(password.getError('required')){
+                    <p-messages
+                        [value]="[{ severity: 'error',summary:'validation Error', detail: 'Password is Required' }]"
+                        [enableService]="false" [closable]="false" />
+                    }
+                    @if(password.getError('minlength')){
+                    <p-messages
+                        [value]="[{ severity: 'error',summary:'validation Error', detail: 'Must be at least 3 char' }]"
+                        [enableService]="false" [closable]="false" />
+                    }
+
+                    @if(password.getError('maxlength')){
+                    <p-messages
+                        [value]="[{ severity: 'error',summary:'validation Error', detail: 'cannot exceed 20 characters' }]"
+                        [enableService]="false" [closable]="false" />
+                    }
+
                     }
                 </div>
 
             </div>
-           
-        
-                <p-button type="submit" label="Login" />
+
+
+            <p-button type="submit" label="Login" />
 
 
         </form>
 
-        <div class="card flex justify-content-center">
-            <p-toast />
-           
-        </div>
+
 
     </div>
 </section>
 
 
 
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
-
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>

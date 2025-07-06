@@ -21,7 +21,6 @@ import { AutoFocusModule } from 'primeng/autofocus';
     InputGroupAddonModule,
     ButtonModule,
     ReactiveFormsModule,
-    ToastModule,
     MessagesModule,
     NgxSpinnerModule,
     AutoFocusModule,
@@ -33,11 +32,9 @@ import { AutoFocusModule } from 'primeng/autofocus';
     InputGroupAddonModule,
     ButtonModule,
     ReactiveFormsModule,
-    ToastModule,
     MessagesModule,
     NgxSpinnerModule,
     AutoFocusModule
   ],
-  providers: [MessageService]
 })
 export class SharedModule { }

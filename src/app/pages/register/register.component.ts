@@ -8,13 +8,13 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { MessageService } from 'primeng/api';
 import { AuthService } from '../../core/service/auth.service';
 import { IRegister } from '../../core/interfaces/iregister';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { SharedModule } from '../../shared/module/shared/shared.module';
 import { UserDataService } from '../../core/service/user-data.service';
+import { NotificationsService } from '../../core/service/notifications.service';
 
 @Component({
   selector: 'app-register',
@@ -29,12 +29,13 @@ export class RegisterComponent {
   email!: FormControl;
   password!: FormControl;
   rePassword!: FormControl;
-
   registrationForm!: FormGroup;
+
+  isRegisterd: boolean = false
 
   constructor(
     private _authService: AuthService,
-    private _MessageService: MessageService,
+    private _notificationsService: NotificationsService,
     private _NgxSpinnerService: NgxSpinnerService,
     private router: Router,
     private userData: UserDataService
@@ -81,6 +82,8 @@ export class RegisterComponent {
   submit() {
     if (this.registrationForm.valid) {
       this.siginUp(this.registrationForm.value);
+      this.isRegisterd = true
+      localStorage.removeItem("cartState")  // enhance remove all cart
     } else {
       this.registrationForm.markAllAsTouched();
       Object.keys(this.registrationForm.controls).forEach((control) =>
@@ -95,7 +98,7 @@ export class RegisterComponent {
       next: (response) => {
         if (response._id) {
           const { email, password } = data;
-          this.show('success', 'Success', 'Success Registration ');
+          this._notificationsService.showSuccess('Success', 'Success Registration ');
           this._authService.login({ email, password }).subscribe(() => {
             localStorage.setItem('token', response._id);
             this.router.navigate(['user']);
@@ -107,17 +110,11 @@ export class RegisterComponent {
         // this.router.navigate(['auth/login']);
       },
       error: (err) => {
-        this.show('error', 'Error', err.error.error);
+        this._notificationsService.showError('Error', err.error.error);
         this._NgxSpinnerService.hide();
       },
     });
   }
 
-  show(severity: string, summary: string, detail: string) {
-    this._MessageService.add({
-      severity: severity,
-      summary: summary,
-      detail: detail,
-    });
-  }
+
 }
