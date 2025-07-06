@@ -32,4 +32,4 @@ npm install ngx-spinner@16
 </pre>
 
 <h2>Demo</h2>
-<a href='https://e-sh0p.netlify.app/'>Demo</a>
+<a target="_blank" href='https://e-sh0p.netlify.app/'>Demo Link</a>
