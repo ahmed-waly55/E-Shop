@@ -1,5 +1,5 @@
-<P>Stop Video (27)</p>
-<p> video name is Interceptors_ Modern vs Legacy</p>
+<P>Stop Video (28)</p>
+<p> video name is Fetch Products & Search Pipe</p>
 <pre>
 <code>
   npx @angular/cli@17 new E-Shop --style=scss --ssr
