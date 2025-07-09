@@ -56,6 +56,16 @@
         </div>
     </div>
 
+    }@empty {
+
+    @if(!isSmallCard){
+    <div class="flex-1 text-center">
+        <div class="text-center warn">Product Name <span class="text-red"> {{searchKey}} </span> It is Not Found</div>
+        <app-empty></app-empty>
+
+    </div>
+    }
+
     }
 
 

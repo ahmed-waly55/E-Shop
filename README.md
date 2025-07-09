@@ -1,5 +1,5 @@
-<P>Stop Video (28)</p>
-<p> video name is Fetch Products & Search Pipe</p>
+<P>Stop Video (29)</p>
+<p> video name is Fetch All Categories & Specific</p>
 <pre>
 <code>
   npx @angular/cli@17 new E-Shop --style=scss --ssr
