@@ -26,7 +26,6 @@ export class LoginComponent {
   constructor(
     private _authService: AuthService,
     private _notificationsService: NotificationsService,
-    private _NgxSpinnerService: NgxSpinnerService,
     private router: Router,
     private userData: UserDataService
   ) {
@@ -62,7 +61,6 @@ export class LoginComponent {
   }
 
   siginIn(data: ILogin): void {
-    this._NgxSpinnerService.show();
     this._authService.login(data).subscribe({
       next: (response) => {
         if (response._id) {
@@ -72,12 +70,10 @@ export class LoginComponent {
           this.userData.username.next(response.name);
           localStorage.setItem('username', response.name);
         }
-        this._NgxSpinnerService.hide();
         this.router.navigate(['user']);
       },
       error: (err) => {
         this._notificationsService.showError('Error', err.error.error);
-        this._NgxSpinnerService.hide();
       },
     });
   }

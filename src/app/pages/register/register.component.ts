@@ -36,7 +36,6 @@ export class RegisterComponent {
   constructor(
     private _authService: AuthService,
     private _notificationsService: NotificationsService,
-    private _NgxSpinnerService: NgxSpinnerService,
     private router: Router,
     private userData: UserDataService
   ) {
@@ -93,7 +92,6 @@ export class RegisterComponent {
   }
 
   siginUp(data: IRegister): void {
-    this._NgxSpinnerService.show();
     this._authService.register(data).subscribe({
       next: (response) => {
         if (response._id) {
@@ -106,12 +104,10 @@ export class RegisterComponent {
             localStorage.setItem('username', response.name);
           });
         }
-        this._NgxSpinnerService.hide();
         // this.router.navigate(['auth/login']);
       },
       error: (err) => {
         this._notificationsService.showError('Error', err.error.error);
-        this._NgxSpinnerService.hide();
       },
     });
   }
