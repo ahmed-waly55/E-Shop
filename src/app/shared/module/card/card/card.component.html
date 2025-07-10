@@ -10,8 +10,7 @@
                 [ngClass]="{'md:w-6rem lg:w-9rem':isSmallCard, 'wfull':!isSmallCard}"
                 class="shadow-2 m-1 border-round-2xl overflow-hidden cursor-pointer">
                 <img [ngClass]="{'h-full':isSmallCard , 'h-20rem':!isSmallCard}" #image
-                    (error)="image.src = 'https://img.freepik.com/premium-vector/vector-illustration-about-concept-no-items-found-no-results-found_675567-6665.jpg'"
-                    class="w-full" [src]="product.image" alt="product">
+                    (error)="image.src = './assets/test.webp'" class="w-full" [src]="product.image" alt="product">
             </figure>
             <div class="content py-1 w-full">
                 <p class="truncate-text overflow-hidden font-medium text-xs my-1">
