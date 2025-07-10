@@ -47,9 +47,9 @@ export class HomeComponent implements OnInit {
   getAllProduct(): void {
     const stordCard = localStorage.getItem('cartState')
     const cartState = stordCard ? JSON.parse(stordCard) : {}
-    this._productService.allProduct().subscribe((response: Iproducts[]) => {
-      this.smallProducts = response.slice(0, 4);
-      this.bestProducts = response.map((product) => {
+    this._productService.allProduct().subscribe((response: any) => {
+      this.smallProducts = response.products.slice(0, 4);
+      this.bestProducts = response.products.map((product: Iproducts) => {
         return {
           ...product,
 

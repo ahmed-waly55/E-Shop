@@ -1,1 +1,17 @@
-<p>category works!</p>
+<section>
+    <div class="container-fluid">
+        <h1 class="text-color-secondry uppercase my-5">All Category</h1>
+        <div class="grid">
+            @for(category of allCategory;track $index){
+            <div class="md:col-6 lg:col-4">
+                <figure [routerLink]="['/user/specificCategory',category]"
+                    class="shadow-2 m-1 border-round-2xl overflow-hidden cursor-pointer">
+                    <img class="w-full" [src]="getImageCategory(category)" [alt]="category">
+                </figure>
+                <h2 class="text-color-secondry capitalize text-center">{{category}}</h2>
+            </div>
+            }
+        </div>
+
+    </div>
+</section>

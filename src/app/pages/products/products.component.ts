@@ -25,7 +25,7 @@ export class ProductsComponent {
 
   getAllProduct() {
     this._ProductService.allProduct().subscribe((next) => {
-      this.allProduct = next
+      this.allProduct = next.products
     })
   }
 }
