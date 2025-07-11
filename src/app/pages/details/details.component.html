@@ -1,1 +1,65 @@
-<p>details works!</p>
+<section>
+    <div class="container">
+        <div class="grid pb-5">
+            <div class="md:col-6">
+                <figure>
+                    <img #image (error)="image.src = './assets/test.webp'" class="w-full" [src]="productDetails.image"
+                        [alt]="productDetails.title">
+                </figure>
+            </div>
+            <div class="md:col-6 details">
+                <h1 class="font-medium mt-1 mb-3 text-color-secondary">{{productDetails.title}}</h1>
+                <p class="font-medium text-sm my-1">
+                    {{ productDetails.description}}
+                </p>
+
+                <div class="flex items-center justify-content-between capitalize">
+                    <p class="dit-t">price:</p>
+                    <p class="dit">{{productDetails.price}} $</p>
+
+                </div>
+                <div class="flex items-center justify-content-between capitalize">
+                    <p class="dit-t">brand:</p>
+                    <p class="dit">{{productDetails.brand}}</p>
+
+                </div>
+                <div class="flex items-center justify-content-between capitalize">
+                    <p class="dit-t">color:</p>
+                    <p class="dit">{{productDetails.color}}</p>
+
+                </div>
+                <div class="flex items-center justify-content-between capitalize">
+                    <p class="dit-t">model:</p>
+                    <p class="dit">{{productDetails.model}}</p>
+
+                </div>
+                <div class="flex items-center justify-content-between capitalize">
+                    <p>category:</p>
+                    <p class="dit">{{productDetails.category}}</p>
+
+                </div>
+                <div class="flex items-center justify-content-between capitalize">
+                    <p>discount:</p>
+                    <p class="dit">{{productDetails.discount}}%</p>
+
+                </div>
+
+
+                @if(productDetails.isAddedToCart){
+                <p-button [routerLink]="['/user/cart']" label="GO TO CART " severity="contrast"
+                    styleClass="my-2 uppercase w-full" icon="pi pi-shopping-cart text-xl" iconPos="left" />
+                }@if(!productDetails.isAddedToCart) {
+                <p-button (click)="addToCart(productDetails.id); productDetails.isAddedToCart = true "
+                    label="add to cart" severity="warning" styleClass="my-2 uppercase w-full"
+                    icon="pi pi-cart-plus text-xl" iconPos="left" />
+
+                }
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>

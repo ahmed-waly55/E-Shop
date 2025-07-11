@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
         return {
           ...product,
 
-          isAddedToCart: cartState[product._id] || false
+          isAddedToCart: cartState[product.id] || false
         }
       });
     })
