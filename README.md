@@ -1,5 +1,5 @@
-<P>Stop Video (30)</p>
-<p> video name is Fetch All Get Product Details</p>
+<P>Stop Video (32)</p>
+<p> video name is Manage Cart Products from Service</p>
 <pre>
 <code>
   npx @angular/cli@17 new E-Shop --style=scss --ssr

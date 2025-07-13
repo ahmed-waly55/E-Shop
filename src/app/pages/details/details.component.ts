@@ -16,16 +16,20 @@ import { NotificationsService } from '../../core/service/notifications.service';
 export class DetailsComponent {
   id: string = ''
   isAddedToCart: boolean = false
-  productDetails!: Iproducts
-  constructor(private _productService: ProductService, private _activatedRoute: ActivatedRoute, private _CartService: CartService, private _notificationsService: NotificationsService) { }
+  productDetails: Iproducts = {} as Iproducts
+  constructor(private _activatedRoute: ActivatedRoute, private _CartService: CartService, private _notificationsService: NotificationsService) { }
   ngOnInit() {
     this._activatedRoute.paramMap.subscribe((next: any) => { this.id = next.params['id'] })
     this.displayDetails()
   }
   displayDetails(): void {
     // const id = ''
-    console.log(this.id)
-    this._productService.getDetails(this.id).subscribe((next) => this.productDetails = next.product)
+    // console.log(this.id)
+    this._activatedRoute.data.subscribe((data: any) => {
+      // console.log(data);
+      this.productDetails = data.details.product
+
+    })
   }
   addToCart(productId: string) {
     const userId = localStorage.getItem("token") ?? ''
