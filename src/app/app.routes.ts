@@ -20,14 +20,14 @@ export const routes: Routes = [
       {
         path: 'login',
         loadComponent: () =>
-          import('./pages/login/login.component').then((c) => c.LoginComponent),
+          import('./pages/login/login.component').then((c) => c.LoginComponent), title: "Login"
       },
       {
         path: 'register',
         loadComponent: () =>
           import('./pages/register/register.component').then(
             (c) => c.RegisterComponent
-          ),
+          ), title: "Register",
         canDeactivate: [registerGuard],
       },
     ],
@@ -45,19 +45,19 @@ export const routes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-          import('./pages/home/home.component').then((c) => c.HomeComponent),
+          import('./pages/home/home.component').then((c) => c.HomeComponent), title: "Home"
       },
       {
         path: 'cart',
         loadComponent: () =>
-          import('./pages/cart/cart.component').then((c) => c.CartComponent),
+          import('./pages/cart/cart.component').then((c) => c.CartComponent), title: "Cart"
       },
       {
         path: 'products',
         loadComponent: () =>
           import('./pages/products/products.component').then(
             (c) => c.ProductsComponent
-          ),
+          ), title: "products"
       },
       {
         path: 'details/:id',
@@ -72,14 +72,14 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/category/category.component').then(
             (c) => c.CategoryComponent
-          ),
+          ), title: "Category"
       },
       {
         path: 'specificCategory/:type',
         loadComponent: () =>
           import('./pages/specific-category/specific-category.component').then(
             (c) => c.SpecificCategoryComponent
-          ),
+          ), title: 'Specific Category'
       },
       { path: '**', redirectTo: '/user/home', pathMatch: 'full' }
     ],

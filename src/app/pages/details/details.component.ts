@@ -5,6 +5,7 @@ import { Iproducts } from '../../core/interfaces/iproducts';
 import { Button } from "primeng/button";
 import { CartService } from '../../core/service/cart.service';
 import { NotificationsService } from '../../core/service/notifications.service';
+import { Title } from '@angular/platform-browser'; //  Import Title service
 
 @Component({
   selector: 'app-details',
@@ -14,28 +15,42 @@ import { NotificationsService } from '../../core/service/notifications.service';
   styleUrl: './details.component.scss'
 })
 export class DetailsComponent {
-  id: string = ''
-  isAddedToCart: boolean = false
-  productDetails!: Iproducts
-  constructor(private _activatedRoute: ActivatedRoute, private _CartService: CartService, private _notificationsService: NotificationsService) { }
+  id: string = '';
+  isAddedToCart: boolean = false;
+  productDetails!: Iproducts;
+
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _CartService: CartService,
+    private _notificationsService: NotificationsService,
+    private _titleService: Title //  Inject Title service
+  ) { }
+
   ngOnInit() {
-    this._activatedRoute.paramMap.subscribe((next: any) => { this.id = next.params['id'] })
-    this.displayDetails()
+    // Get the product ID from the route parameters
+    this._activatedRoute.paramMap.subscribe((next: any) => {
+      this.id = next.params['id'];
+    });
+
+    // Display product details
+    this.displayDetails();
   }
+
   displayDetails(): void {
-    // const id = ''
-    // console.log(this.id)
     this._activatedRoute.data.subscribe((data: any) => {
-      // console.log(data);
+      // Set product details and check if it's added to cart
       this.productDetails = {
         ...data.details.product,
         isAddedToCart: this._CartService.isAddedToCart(data.details.product)
-      }
+      };
 
-    })
+      //  Set the browser tab title to the product title
+      this._titleService.setTitle(this.productDetails.title || 'Product Details');
+    });
   }
+
   addToCart(product: Iproducts) {
-    this._CartService.addToCart(product)
+    // Add the product to the cart
+    this._CartService.addToCart(product);
   }
-
 }
