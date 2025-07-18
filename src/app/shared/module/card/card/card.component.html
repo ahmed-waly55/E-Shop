@@ -20,7 +20,7 @@
                 <div class="flex align-items-center gap-2">
                     <div class="price flex gap-2 items-center">
                         <span class="text-color-secondary">
-                            <del>14</del>
+                            <!-- <del>14</del> -->
                         </span>
                         <span class="new-price font-bold">
                             {{product.price}}
@@ -30,10 +30,13 @@
 
                         </span>
                     </div>
+                    @if(product.discount > 0){
                     <div class="offer">
                         <span class="offer-s p-1 border-circle text-white text-xs">%{{product.discount}}</span>
                         <span class="fonot-bold text-xs fonot-bold px-1">off</span>
                     </div>
+                    }
+
                 </div>
 
 

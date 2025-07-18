@@ -1,38 +1,40 @@
 <div class="card">
     <p-menubar [model]="items">
         <ng-template pTemplate="start">
-          <figure class="my-0 mx-2">
-            <img class="w-2rem" src="./assets/logo.svg" alt="logo">
-          </figure>
+            <figure class="my-0 mx-2">
+                <img class="w-2rem" src="./assets/logo.svg" alt="logo">
+            </figure>
         </ng-template>
         <ng-template pTemplate="item" let-item let-root="root">
-            <a pRipple class="flex align-items-center p-menuitem-link" [routerLink]="[item?.['path']]"  routerLinkActive="bg-white"            >
-                
+            <a pRipple class="flex align-items-center p-menuitem-link" [routerLink]="[item?.['path']]"
+                routerLinkActive="bg-white">
+
                 <span [class]="item.icon"></span>
                 <span class="ml-2">{{ item.label }}</span>
                 <p-badge *ngIf="item.badge" [ngClass]="{ 'ml-auto': !root, 'ml-2': root }" [value]="item.badge" />
-                <span *ngIf="item.shortcut" class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">{{ item.shortcut }}</span>
+                <span *ngIf="item.shortcut"
+                    class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">{{ item.shortcut
+                    }}</span>
                 <i *ngIf="item.items" [ngClass]="['pi', root ? 'pi-angle-down ml-2' : 'pi-angle-right ml-auto']"></i>
             </a>
         </ng-template>
         <ng-template pTemplate="end">
             <div class="card flex justify-content-center align-items-center gap-2">
-                <a>
+                <a [routerLink]="['/user/cart']">
                     <i class="pi pi-shopping-cart text-3xl mr-4" pBadge value={{cartCount}}></i>
                 </a>
-                <a
-                (click)="logOut = !logOut "
-                class="user-name p-3 text-white bg-orange-400 font-bold capitalize relative"
-                >
+                <a (click)="logOut = !logOut "
+                    class="user-name p-3 text-white bg-orange-400 font-bold capitalize relative">
                     <span>{{userName}}</span>
 
-                  @if(logOut){
-                    
-                    <a (click)="logout()" class="logout py-2 px-5 text-white bg-orange-400 font-bold absolute left-50 border-round-2xl flex align-items-center gap-2">
+                    @if(logOut){
+
+                    <a (click)="logout()"
+                        class="logout py-2 px-5 text-white bg-orange-400 font-bold absolute left-50 border-round-2xl flex align-items-center gap-2">
                         <span> logout</span>
-                     <span class="pi pi-sign-out"></span>
-                     </a>
-                  }
+                        <span class="pi pi-sign-out"></span>
+                    </a>
+                    }
                 </a>
             </div>
         </ng-template>

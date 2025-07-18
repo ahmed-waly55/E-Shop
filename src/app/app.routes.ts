@@ -81,6 +81,7 @@ export const routes: Routes = [
             (c) => c.SpecificCategoryComponent
           ),
       },
+      { path: '**', redirectTo: '/user/home', pathMatch: 'full' }
     ],
   },
 ];
