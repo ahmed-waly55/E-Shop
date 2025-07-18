@@ -68,9 +68,7 @@ export class UserNavComponent implements OnInit {
   }
   getUserCartCount(): void {
     const id = localStorage.getItem('token') ?? '';
-    this._cartService
-      .getCartCount(id)
-      .subscribe((next) => (this.cartCount = next.cart.length));
+    this._cartService.countOfCart.subscribe((next) => (this.cartCount = next));
   }
 
   logout(): void {

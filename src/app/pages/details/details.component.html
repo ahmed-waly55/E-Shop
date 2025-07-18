@@ -49,9 +49,9 @@
                 <p-button [routerLink]="['/user/cart']" label="GO TO CART " severity="contrast"
                     styleClass="my-2 uppercase w-full" icon="pi pi-shopping-cart text-xl" iconPos="left" />
                 }@if(!productDetails.isAddedToCart) {
-                <p-button (click)="addToCart(productDetails.id); productDetails.isAddedToCart = true "
-                    label="add to cart" severity="warning" styleClass="my-2 uppercase w-full"
-                    icon="pi pi-cart-plus text-xl" iconPos="left" />
+                <p-button (click)="addToCart(productDetails); productDetails.isAddedToCart = true " label="add to cart"
+                    severity="warning" styleClass="my-2 uppercase w-full" icon="pi pi-cart-plus text-xl"
+                    iconPos="left" />
 
                 }
 

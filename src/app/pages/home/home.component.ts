@@ -4,6 +4,7 @@ import { CardComponent } from "../../shared/module/card/card/card.component";
 import { Iproducts } from '../../core/interfaces/iproducts';
 import { PopularPipe } from '../../core/pipes/popular.pipe';
 import { ProductService } from '../../core/service/product.service';
+import { CartService } from '../../core/service/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -13,12 +14,12 @@ import { ProductService } from '../../core/service/product.service';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  constructor(private _productService: ProductService) {
+  constructor(private _productService: ProductService, private _cartService: CartService) {
 
   }
   images: any[] | undefined;
   smallProducts!: Iproducts[];
-  bestProducts!: Iproducts[]
+  bestProducts!: Iproducts[];
 
   ngOnInit() {
     this.images = [
@@ -45,18 +46,15 @@ export class HomeComponent implements OnInit {
   }
 
   getAllProduct(): void {
-    const stordCard = localStorage.getItem('cartState')
-    const cartState = stordCard ? JSON.parse(stordCard) : {}
     this._productService.allProduct().subscribe((response: any) => {
       this.smallProducts = response.products.slice(0, 4);
       this.bestProducts = response.products.map((product: Iproducts) => {
         return {
           ...product,
-
-          isAddedToCart: cartState[product.id] || false
-        }
+          isAddedToCart: this._cartService.isAddedToCart(product) || false,
+        };
       });
-    })
+    });
   }
 
 

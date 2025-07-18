@@ -1,5 +1,5 @@
-<P>Stop Video (32)</p>
-<p> video name is Manage Cart Products from Service</p>
+<P>Stop Video (33)</p>
+<p> video name is ManShow Cart with PrimeNG DataView</p>
 <pre>
 <code>
   npx @angular/cli@17 new E-Shop --style=scss --ssr
